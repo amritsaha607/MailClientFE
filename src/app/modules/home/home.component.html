@@ -1,17 +1,16 @@
 <div class="row mail-container">
   <div class="col block-mail-line">
-    <app-mail-line (open)="openMailContent($event)" />
-    <app-mail-line (open)="openMailContent($event)" />
-    <app-mail-line (open)="openMailContent($event)" />
-    <app-mail-line (open)="openMailContent($event)" />
-    <app-mail-line (open)="openMailContent($event)" />
-    <app-mail-line (open)="openMailContent($event)" />
-    <app-mail-line (open)="openMailContent($event)" />
-    <app-mail-line (open)="openMailContent($event)" />
-    <app-mail-line (open)="openMailContent($event)" />
-    <app-mail-line (open)="openMailContent($event)" />
-    <app-mail-line (open)="openMailContent($event)" />
-    <app-mail-line (open)="openMailContent($event)" />
+    <app-mail-line
+      *ngFor="let mail of mails"
+      [mail]="mail"
+      (open)="openMailContent($event)"
+    />
   </div>
-  <div class="col block-mail-content"></div>
+  <div class="col block-mail-content">
+    <!-- <div class="body-subject">{{ selectedMail.subject }}</div>
+    <div class="body-sender">
+      <span class="sender-name">{{ selectedMail.sender.name }}</span>
+      <span class="sender-email">{{ selectedMail.sender.email }}</span>
+    </div> -->
+  </div>
 </div>

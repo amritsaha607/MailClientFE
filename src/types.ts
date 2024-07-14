@@ -7,4 +7,5 @@ export interface Mail {
   subject: String;
   sender: User;
   content?: String;
+  time: Date;
 }
