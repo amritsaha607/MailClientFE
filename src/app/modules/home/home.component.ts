@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Mail } from '../../../types';
 import { MailLineComponent } from '../../components/mail-line/mail-line.component';
 
 @Component({
@@ -8,4 +9,8 @@ import { MailLineComponent } from '../../components/mail-line/mail-line.componen
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
-export class HomeComponent {}
+export class HomeComponent {
+  openMailContent(mail: Mail) {
+    console.log(`Opening email ${mail}`);
+  }
+}

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Mail } from '../../../types';
 
 @Component({
@@ -10,4 +10,9 @@ import { Mail } from '../../../types';
 })
 export class MailLineComponent {
   @Input() mail!: Mail;
+  @Output() open: EventEmitter<Mail> = new EventEmitter<Mail>();
+
+  openMailContent() {
+    this.open.emit(this.mail);
+  }
 }
