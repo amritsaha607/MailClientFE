@@ -10,9 +10,15 @@
   display: block;
   font-size: 1.1rem;
 }
+.mail-item-line-2 {
+  padding-top: 0.4rem;
+}
 .mail-sender {
   font-size: 0.8rem;
-  padding-top: 0.4rem;
-  display: block;
+  font-style: italic;
+}
+.mail-time {
+  float: right;
+  font-size: 0.8rem;
   font-style: italic;
 }
