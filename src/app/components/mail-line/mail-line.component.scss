@@ -1,3 +1,18 @@
 .mail-item {
-  height: 5rem;
+  height: 3.9rem;
+  padding: 0.5rem;
+  border-radius: 0 0 0 1rem;
+}
+.mail-item:hover {
+  background-color: #eee;
+}
+.mail-subject {
+  display: block;
+  font-size: 1.3rem;
+}
+.mail-sender {
+  font-size: 1rem;
+  padding-top: 0.4rem;
+  display: block;
+  font-style: italic;
 }
