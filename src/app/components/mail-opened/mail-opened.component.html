@@ -1,5 +1,10 @@
-<div class="body-subject">{{ mail.subject }}</div>
-<div class="body-sender">
-  <span class="sender-name">{{ mail.sender.name }}</span>
-  <span class="sender-email">{{ mail.sender.email }}</span>
+<div class="body-title border-bottom">
+  <div class="body-subject">{{ mail.subject }}</div>
+  <div class="body-sender">
+    <span class="sender-name">{{ mail.sender.name }}</span>
+    <span class="sender-email">{{ mail.sender.email }}</span>
+  </div>
+</div>
+<div class="body-content">
+  {{ mail.content }}
 </div>
