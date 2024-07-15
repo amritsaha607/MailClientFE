@@ -6,11 +6,7 @@
       (open)="openMailContent($event)"
     />
   </div>
-  <div class="col block-mail-content">
-    <!-- <div class="body-subject">{{ selectedMail.subject }}</div>
-    <div class="body-sender">
-      <span class="sender-name">{{ selectedMail.sender.name }}</span>
-      <span class="sender-email">{{ selectedMail.sender.email }}</span>
-    </div> -->
+  <div class="col block-mail-content" *ngIf="selectedMail">
+    <app-mail-opened [mail]="selectedMail" />
   </div>
 </div>
