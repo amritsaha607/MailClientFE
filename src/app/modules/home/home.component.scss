@@ -13,6 +13,23 @@
 }
 .block-mail-content {
   padding: 2rem;
+  width: 100%;
+}
+.block-mail-content {
+  img {
+    opacity: 0.1;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2rem;
+  }
+  .blank-mail-content-text {
+    font-family: sans-serif;
+    font-size: 2rem;
+    text-align: center;
+    opacity: 0.4;
+    font-weight: 600;
+  }
 }
 
 ::-webkit-scrollbar {

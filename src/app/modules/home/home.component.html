@@ -6,7 +6,16 @@
       (open)="openMailContent($event)"
     />
   </div>
-  <div class="col block-mail-content" *ngIf="selectedMail">
+  <div
+    class="col block-mail-content"
+    *ngIf="selectedMail; else blank_mail_content"
+  >
     <app-mail-opened [mail]="selectedMail" />
   </div>
+  <ng-template #blank_mail_content>
+    <div class="block-mail-content">
+      <img src="./assets/images/logo.png" alt="Logo Image" />
+      <div class="blank-mail-content-text">Click on a mail to view message</div>
+    </div>
+  </ng-template>
 </div>
