@@ -6,7 +6,8 @@
 }
 
 .block-mail-line {
-  width: 30%;
+  min-width: 30%;
+  max-width: 30%;
   border-right: 0.5px solid #aaa;
   overflow-y: scroll;
 }
