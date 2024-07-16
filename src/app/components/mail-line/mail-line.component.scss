@@ -2,9 +2,10 @@
   height: 3.5rem;
   padding: 0.6rem;
   font-family: sans-serif;
+  color: var(--default-theme-color-dark);
 }
 .mail-item:hover {
-  background-color: #eee;
+  background-color: var(--default-theme-color-bg);
 }
 .mail-subject {
   display: block;

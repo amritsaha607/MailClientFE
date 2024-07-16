@@ -1,6 +1,6 @@
 .mail-container {
   margin: 0 5rem;
-  border: 3px solid #aaa;
+  border: 3px solid var(--default-theme-color-dark);
   border-radius: 1rem 1rem 0 0;
   height: 100%;
 }
@@ -8,7 +8,7 @@
 .block-mail-line {
   min-width: 30%;
   max-width: 30%;
-  border-right: 0.5px solid #aaa;
+  border-right: 0.5px solid var(--default-theme-color);
   overflow-y: scroll;
 }
 .block-mail-content {
@@ -29,6 +29,7 @@
     text-align: center;
     opacity: 0.4;
     font-weight: 600;
+    color: var(--default-theme-color);
   }
 }
 
@@ -36,8 +37,8 @@
   width: 5px;
 }
 ::-webkit-scrollbar-thumb {
-  background: #aaa;
+  background: var(--default-theme-color-light);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: var(--default-theme-color);
 }
