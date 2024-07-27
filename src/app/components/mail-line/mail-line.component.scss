@@ -1,0 +1,25 @@
+.mail-item {
+  height: 3.5rem;
+  padding: 0.6rem;
+  font-family: sans-serif;
+  color: var(--default-theme-color-dark);
+}
+.mail-item:hover {
+  background-color: var(--default-theme-color-bg);
+}
+.mail-subject {
+  display: block;
+  font-size: 1.1rem;
+}
+.mail-item-line-2 {
+  padding-top: 0.4rem;
+}
+.mail-sender {
+  font-size: 0.8rem;
+  font-style: italic;
+}
+.mail-time {
+  float: right;
+  font-size: 0.8rem;
+  font-style: italic;
+}

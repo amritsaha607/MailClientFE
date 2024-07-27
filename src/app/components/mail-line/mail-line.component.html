@@ -1,0 +1,7 @@
+<div class="border-bottom mail-item" (click)="openMailContent()">
+  <span class="mail-subject">{{ mail.subject }}</span>
+  <div class="mail-item-line-2">
+    <span class="mail-sender">{{ mail.sender.name }}</span>
+    <span class="mail-time">{{ mail.time | dateToString }}</span>
+  </div>
+</div>

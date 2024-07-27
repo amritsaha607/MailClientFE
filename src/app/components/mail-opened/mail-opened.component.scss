@@ -1,0 +1,20 @@
+.body-title {
+  padding-bottom: 1rem;
+}
+.body-subject {
+  font-size: 2rem;
+  font-weight: bold;
+  font-family: sans-serif;
+  margin-bottom: 0.3rem;
+}
+.body-sender {
+  font-family: sans-serif;
+
+  .sender-name {
+    font-weight: 600;
+    margin-right: 1rem;
+  }
+}
+.body-content {
+  padding-top: 1rem;
+}
