@@ -11,6 +11,8 @@ export interface Mail {
 }
 
 export interface FormItem {
+  id?: String;
+  name?: String;
   title?: String;
   placeholder?: String;
   inputType?: String;
