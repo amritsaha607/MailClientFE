@@ -9,3 +9,9 @@ export interface Mail {
   content?: String;
   time: Date;
 }
+
+export interface FormItem {
+  title?: String;
+  placeholder?: String;
+  inputType?: String;
+}
