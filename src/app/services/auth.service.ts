@@ -17,11 +17,11 @@ export class AuthService {
     });
   }
 
-  loginUser(user: User) {
-    this.apiService.get(this.url, {
+  loginUser(email: string, password: string) {
+    return this.apiService.get<HttpResponse<any>>(this.url, {
       params: {
-        email: user.email,
-        password: user.password ?? '',
+        email: email,
+        password: password,
       },
       observe: 'response',
     });

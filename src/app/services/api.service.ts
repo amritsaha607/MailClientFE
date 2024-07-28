@@ -1,6 +1,10 @@
-import { HttpClient } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpResponse,
+} from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, Observable, of } from 'rxjs';
 import { Options, User } from '../../types';
 
 @Injectable({
@@ -9,11 +13,25 @@ import { Options, User } from '../../types';
 export class ApiService {
   constructor(private httpClient: HttpClient) {}
 
+  handleError(err: HttpErrorResponse) {
+    return of(
+      new HttpResponse({
+        body: err.error,
+        status: err.status,
+        statusText: err.statusText,
+      })
+    );
+  }
+
   get<T>(url: string, options: Options) {
-    return this.httpClient.get(url, options) as Observable<T>;
+    return this.httpClient
+      .get(url, options)
+      .pipe(catchError((err) => this.handleError(err))) as Observable<T>;
   }
 
   post<T>(url: string, body: User, options: Options) {
-    return this.httpClient.post(url, body, options) as Observable<T>;
+    return this.httpClient
+      .post(url, body, options)
+      .pipe(catchError((err) => this.handleError(err))) as Observable<T>;
   }
 }

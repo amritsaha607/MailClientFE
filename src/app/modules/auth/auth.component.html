@@ -19,7 +19,6 @@
   </form>
 
   <!-- Form signIn -->
-
   <form
     class="form-group"
     [ngClass]="activeForm == 'signup' ? 'hidden' : ''"
@@ -31,7 +30,7 @@
       [item]="loginFormItem"
     />
     <div class="form-button-div">
-      <button>Login</button>
+      <button (click)="loginUser()">Login</button>
     </div>
     <div class="form-message">
       Not registered yet? <span (click)="toggleActiveForm()">Register</span>

@@ -115,7 +115,11 @@ export class AuthComponent {
   }
 
   loginUser() {
-    this.loginForm.patchValue(this.user);
-    this.authService.loginUser(this.user);
+    const { email, password } = this.loginForm.value;
+    this.authService
+      .loginUser(email ?? '', password ?? '')
+      .subscribe((response) => {
+        console.log(response.status, response);
+      });
   }
 }
