@@ -1,1 +1,31 @@
-<app-form-signup></app-form-signup> <app-form-login></app-form-login>
+<div class="container">
+  <!-- Form signUp -->
+  <form class="form-group" [ngClass]="activeForm == 'login' ? 'hidden' : ''">
+    <div class="form-title">Create Account</div>
+    <app-form-item
+      *ngFor="let signupFormItem of signupFormItems"
+      [item]="signupFormItem"
+    />
+    <div class="form-button-div">
+      <button>Create</button>
+    </div>
+    <div class="form-message">
+      Already have an account? <span (click)="toggleActiveForm()">Login</span>
+    </div>
+  </form>
+
+  <!-- Form signIn -->
+  <form class="form-group" [ngClass]="activeForm == 'signup' ? 'hidden' : ''">
+    <div class="form-title">Sign In</div>
+    <app-form-item
+      *ngFor="let loginFormItem of loginFormItems"
+      [item]="loginFormItem"
+    />
+    <div class="form-button-div">
+      <button>Login</button>
+    </div>
+    <div class="form-message">
+      Not registered yet? <span (click)="toggleActiveForm()">Register</span>
+    </div>
+  </form>
+</div>

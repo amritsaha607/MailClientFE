@@ -1,0 +1,41 @@
+.form-group {
+  padding: 4rem;
+  background-color: var(--default-theme-color-bg);
+  max-width: fit-content;
+  border-radius: 4rem;
+  margin: 0 auto;
+}
+.form-title {
+  font-size: 2rem;
+  font-weight: bolder;
+  padding: 0.5rem;
+  margin: 1.2rem auto;
+  border-bottom: 0.5px solid var(--default-theme-color-dark);
+  color: var(--default-theme-color-dark);
+  font-family: sans-serif;
+  text-align: right;
+}
+.form-button-div {
+  text-align: right;
+  padding: 0.5rem;
+
+  button {
+    font-size: medium;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 0.5rem;
+    background-color: var(--default-theme-color-dark);
+    color: white;
+  }
+}
+.form-message {
+  border-top: 0.5px solid var(--default-theme-color-dark);
+  padding-top: 0.5rem;
+  font-style: italic;
+  text-align: right;
+
+  span {
+    cursor: pointer;
+    font-weight: bold;
+  }
+}
