@@ -29,7 +29,7 @@ export interface Options {
         [header: string]: string | string[];
       };
   context?: HttpContext;
-  observe?: 'body';
+  observe: 'response';
   params?:
     | HttpParams
     | {

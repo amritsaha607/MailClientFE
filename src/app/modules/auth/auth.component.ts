@@ -1,4 +1,5 @@
 import { CommonModule } from '@angular/common';
+import { HttpResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormItem, User } from '../../../types';
@@ -106,7 +107,11 @@ export class AuthComponent {
   createUser() {
     const { name, email, password, dob } = this.signupForm.value;
     this.setUserValues(name ?? '', email ?? '', password ?? '', dob ?? '');
-    this.authService.createUser(this.user);
+    this.authService
+      .createUser(this.user)
+      .subscribe((response: HttpResponse<any>) => {
+        console.log(response.status, response);
+      });
   }
 
   loginUser() {
