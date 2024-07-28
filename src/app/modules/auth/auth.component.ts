@@ -1,12 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormItem } from '../../../types';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormItem, User } from '../../../types';
 import { FormItemComponent } from '../../components/form-item/form-item.component';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-auth',
   standalone: true,
-  imports: [FormItemComponent, CommonModule],
+  imports: [FormItemComponent, CommonModule, ReactiveFormsModule],
   templateUrl: './auth.component.html',
   styleUrl: './auth.component.scss',
 })
@@ -15,7 +17,28 @@ export class AuthComponent {
   loginFormItems!: FormItem[];
   activeForm: String = 'login';
 
-  constructor() {
+  signupForm = this.formBuilder.group({
+    name: ['', [Validators.required]],
+    email: ['', [Validators.required]],
+    password: ['', Validators.required],
+    dob: ['', Validators.required],
+  });
+  loginForm = this.formBuilder.group({
+    email: ['', [Validators.required]],
+    password: ['', Validators.required],
+  });
+
+  user: User = {
+    name: '',
+    email: '',
+    password: '',
+    dob: '',
+  };
+
+  constructor(
+    private authService: AuthService,
+    private formBuilder: FormBuilder
+  ) {
     this.signupFormItems = [
       {
         id: 'name',
@@ -38,19 +61,26 @@ export class AuthComponent {
         placeholder: 'Create a password',
         inputType: 'password',
       },
+      {
+        id: 'dob',
+        name: 'dob',
+        title: 'Date of Birth',
+        placeholder: '',
+        inputType: 'date',
+      },
     ];
 
     this.loginFormItems = [
       {
-        id: 'login_email',
-        name: 'login_email',
+        id: 'email',
+        name: 'email',
         title: 'Email',
         placeholder: 'Enter email ID',
         inputType: 'email',
       },
       {
-        id: 'login_password',
-        name: 'login_password',
+        id: 'password',
+        name: 'password',
         title: 'Password',
         placeholder: 'Enter password',
         inputType: 'password',
@@ -64,5 +94,23 @@ export class AuthComponent {
     } else {
       this.activeForm = 'login';
     }
+  }
+
+  setUserValues(name: string, email: string, password: string, dob: string) {
+    this.user.name = name;
+    this.user.email = email;
+    this.user.password = password;
+    this.user.dob = dob;
+  }
+
+  createUser() {
+    const { name, email, password, dob } = this.signupForm.value;
+    this.setUserValues(name ?? '', email ?? '', password ?? '', dob ?? '');
+    this.authService.createUser(this.user);
+  }
+
+  loginUser() {
+    this.loginForm.patchValue(this.user);
+    this.authService.loginUser(this.user);
   }
 }
