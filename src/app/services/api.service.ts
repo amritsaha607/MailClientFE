@@ -5,7 +5,7 @@ import {
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, of } from 'rxjs';
-import { Options, User } from '../../types';
+import { Options } from '../../types';
 
 @Injectable({
   providedIn: 'root',
@@ -29,7 +29,7 @@ export class ApiService {
       .pipe(catchError((err) => this.handleError(err))) as Observable<T>;
   }
 
-  post<T>(url: string, body: User, options: Options) {
+  post<T>(url: string, body: any, options: Options) {
     return this.httpClient
       .post(url, body, options)
       .pipe(catchError((err) => this.handleError(err))) as Observable<T>;

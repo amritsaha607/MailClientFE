@@ -104,11 +104,15 @@ export class AuthComponent {
     this.user.dob = dob;
   }
 
+  setUserInSession(email: string) {
+    localStorage.setItem('active_user', email);
+  }
+
   createUser() {
     const { name, email, password, dob } = this.signupForm.value;
     this.setUserValues(name ?? '', email ?? '', password ?? '', dob ?? '');
     this.authService
-      .createUser(this.user)
+      .signupUser(this.user)
       .subscribe((response: HttpResponse<any>) => {
         console.log(response.status, response);
       });
@@ -120,6 +124,9 @@ export class AuthComponent {
       .loginUser(email ?? '', password ?? '')
       .subscribe((response) => {
         console.log(response.status, response);
+        if (response.status == 200) {
+          // this.setUserInSession(response.);
+        }
       });
   }
 }
