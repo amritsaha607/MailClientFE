@@ -1,0 +1,21 @@
+.form-item {
+  font-family: sans-serif;
+  font-size: large;
+  margin: 1rem;
+  color: var(--default-theme-color-dark);
+
+  label {
+    width: max-content;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  input {
+    padding: 0.5rem;
+    font-size: large;
+    border: 1px solid var(--default-theme-color);
+    border-radius: 0.8rem;
+    margin-bottom: 0.6rem;
+    width: 18rem;
+  }
+}
