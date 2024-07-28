@@ -7,6 +7,11 @@ import { AuthService } from './auth.service';
 export class SessionService {
   constructor(private authService: AuthService) {}
 
+  checkUserInSession() {
+    const activeEmail = sessionStorage.getItem('activeUser');
+    return activeEmail ? true : false;
+  }
+
   getSessionUser() {
     const activeEmail = sessionStorage.getItem('activeUser');
     if (activeEmail) {
