@@ -5,6 +5,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormItem, User } from '../../../types';
 import { FormItemComponent } from '../../components/form-item/form-item.component';
 import { AuthService } from '../../services/auth.service';
+import { SessionService } from '../../services/session.service';
 
 @Component({
   selector: 'app-auth',
@@ -37,6 +38,7 @@ export class AuthComponent {
   };
 
   constructor(
+    private sessionService: SessionService,
     private authService: AuthService,
     private formBuilder: FormBuilder
   ) {
@@ -89,6 +91,16 @@ export class AuthComponent {
     ];
   }
 
+  ngOnInit() {
+    if (this.sessionService.getSessionUser()) {
+      this.routeToHome();
+    }
+  }
+
+  routeToHome() {
+    window.location.href = '';
+  }
+
   toggleActiveForm() {
     if (this.activeForm == 'login') {
       this.activeForm = 'signup';
@@ -104,17 +116,16 @@ export class AuthComponent {
     this.user.dob = dob;
   }
 
-  setUserInSession(email: string) {
-    localStorage.setItem('active_user', email);
-  }
-
   createUser() {
     const { name, email, password, dob } = this.signupForm.value;
     this.setUserValues(name ?? '', email ?? '', password ?? '', dob ?? '');
     this.authService
       .signupUser(this.user)
       .subscribe((response: HttpResponse<any>) => {
-        console.log(response.status, response);
+        if (response.status == 200) {
+          this.sessionService.setUserSession(response.body.email);
+          this.routeToHome();
+        }
       });
   }
 
@@ -123,9 +134,9 @@ export class AuthComponent {
     this.authService
       .loginUser(email ?? '', password ?? '')
       .subscribe((response) => {
-        console.log(response.status, response);
         if (response.status == 200) {
-          // this.setUserInSession(response.);
+          this.sessionService.setUserSession(response.body.email);
+          this.routeToHome();
         }
       });
   }
