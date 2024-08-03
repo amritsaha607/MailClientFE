@@ -28,19 +28,11 @@ export class HomeComponent {
     if (this.sessionService.checkUserInSession() == false) {
       window.location.href = 'login';
     } else {
-      this.fetchSessionUser();
+      this.user = JSON.parse(this.sessionService.getSessionUser() ?? '');
     }
   }
 
   openMailContent(mail: Mail) {
     this.selectedMail = mail;
-  }
-
-  fetchSessionUser() {
-    this.sessionService.getSessionUser()?.subscribe((response) => {
-      if (response.status == 200) {
-        this.user = response.body;
-      }
-    });
   }
 }

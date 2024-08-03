@@ -8,19 +8,19 @@ export class SessionService {
   constructor(private authService: AuthService) {}
 
   checkUserInSession() {
-    const activeEmail = sessionStorage.getItem('activeUser');
-    return activeEmail ? true : false;
+    const activeUser = sessionStorage.getItem('activeUser');
+    return activeUser ? true : false;
   }
 
   getSessionUser() {
-    const activeEmail = sessionStorage.getItem('activeUser');
-    if (activeEmail) {
-      return this.authService.getUser(activeEmail);
-    }
-    return null;
+    return sessionStorage.getItem('activeUser');
   }
 
   setUserSession(email: string) {
-    sessionStorage.setItem('activeUser', email);
+    this.authService.getUser(email)?.subscribe((response) => {
+      if (response.status == 200) {
+        sessionStorage.setItem('activeUser', JSON.stringify(response.body));
+      }
+    });
   }
 }

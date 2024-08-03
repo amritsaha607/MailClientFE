@@ -19,16 +19,10 @@ export class AppComponent {
   constructor(private sessionService: SessionService) {}
 
   ngOnInit() {
-    this.fetchSessionUser();
-  }
-
-  fetchSessionUser() {
-    this.sessionService.getSessionUser()?.subscribe((response) => {
-      if (response.status == 200) {
-        this.user = response.body;
-        this.setInitials();
-      }
-    });
+    if (this.sessionService.checkUserInSession()) {
+      this.user = JSON.parse(this.sessionService.getSessionUser() ?? '');
+      this.setInitials();
+    }
   }
 
   setInitials() {
