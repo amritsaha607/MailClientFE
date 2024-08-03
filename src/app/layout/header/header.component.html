@@ -1,4 +1,9 @@
 <header class="wrapper row full-center">
   <img src="./assets/images/logo.png" alt="Logo" class="logo" />
-  <div class="profile-icon">{{ initials }}</div>
+  <div class="menu">
+    <div class="sign-out" (click)="signOut()" *ngIf="initials != '-_-'">
+      Logout
+    </div>
+    <div class="profile-icon">{{ initials }}</div>
+  </div>
 </header>

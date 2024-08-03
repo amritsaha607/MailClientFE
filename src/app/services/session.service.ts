@@ -23,4 +23,8 @@ export class SessionService {
       }
     });
   }
+
+  removeUserFromSession() {
+    sessionStorage.removeItem('activeUser');
+  }
 }

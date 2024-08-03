@@ -11,21 +11,41 @@
     margin-right: auto;
   }
 
-  .profile-icon {
-    // Size
-    padding: 1rem;
-    object-fit: contain;
-
+  .menu {
     // postion
     margin-left: auto;
 
-    // looks
-    font-family: sans-serif;
-    font-size: larger;
-    color: white;
-    background-color: rgb(114, 114, 57);
-    border-radius: 50%;
-    text-align: center;
-    font-weight: 700;
+    .sign-out {
+      display: inline;
+      margin-right: 3rem;
+      padding: 0.8rem;
+      cursor: pointer;
+      color: var(--default-theme-color-dark);
+      font-family: sans-serif;
+      font-size: large;
+      border: 0.5px solid var(--default-theme-color-dark);
+      transition: background ease-in-out 0.2s;
+    }
+
+    .sign-out:hover {
+      background-color: var(--default-theme-color-bg);
+    }
+
+    .profile-icon {
+      display: inline;
+
+      // Size
+      padding: 1rem;
+      object-fit: contain;
+
+      // looks
+      font-family: sans-serif;
+      font-size: larger;
+      color: white;
+      background-color: var(--default-theme-color-dark);
+      border-radius: 50%;
+      text-align: center;
+      font-weight: 700;
+    }
   }
 }

@@ -47,4 +47,9 @@ export class AppComponent {
     }
     return this.initials;
   }
+
+  signOut() {
+    this.sessionService.removeUserFromSession();
+    window.location.reload();
+  }
 }
