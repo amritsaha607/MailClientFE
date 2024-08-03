@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -9,4 +9,9 @@ import { Component, Input } from '@angular/core';
 })
 export class HeaderComponent {
   @Input() initials: string = '-_-';
+  @Output() signOutEmitter: EventEmitter<string> = new EventEmitter<string>();
+
+  signOut() {
+    this.signOutEmitter.emit('sign-out');
+  }
 }
