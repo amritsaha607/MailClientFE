@@ -65,6 +65,22 @@ app-root {
   gap: 2rem;
 }
 
+.pad-02 {
+  padding: 0.2rem;
+}
+
+.pad-05 {
+  padding: 0.5rem;
+}
+
+.pad-1 {
+  padding: 1rem;
+}
+
+.pad-2 {
+  padding: 2rem;
+}
+
 .space-between {
   justify-content: space-between;
 }
@@ -98,4 +114,16 @@ app-root {
 .container {
   margin-left: 1rem;
   margin-right: 1rem;
+}
+
+.font-l {
+  font-size: large;
+}
+
+.font-m {
+  font-size: medium;
+}
+
+.font-ss {
+  font-family: sans-serif;
 }

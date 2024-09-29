@@ -38,6 +38,12 @@
   bottom: 3rem;
   right: 6rem;
 }
+.mail-compose-popup {
+  position: absolute;
+  bottom: 3rem;
+  right: 12rem;
+  z-index: 1;
+}
 
 ::-webkit-scrollbar {
   width: 5px;

@@ -1,0 +1,37 @@
+.mail-popup-container {
+  border: 0.5px solid var(--default-theme-color-bg);
+  border-radius: 0.5rem;
+  color: var(--default-theme-color-dark);
+  font-size: large;
+  box-shadow: 0.1rem 0.1rem 1rem var(--default-theme-color-bg);
+  width: 35rem;
+  background-color: white;
+  z-index: 1;
+
+  input {
+    border: none;
+    width: -webkit-fill-available;
+  }
+  input:focus {
+    outline: none;
+  }
+
+  .heading {
+    font-weight: bold;
+    border-radius: 0.5rem 0.5rem 0 0;
+    background-color: var(--default-theme-color-dark);
+    color: var(--default-theme-color-font-light);
+  }
+
+  .content {
+    textarea {
+      resize: none;
+      height: 200px;
+      border: none;
+      width: -webkit-fill-available;
+    }
+    textarea:focus {
+      outline: none;
+    }
+  }
+}
