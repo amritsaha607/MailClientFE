@@ -19,11 +19,11 @@
     </div>
   </ng-template>
 
-  <div class="mail-compose-button">
+  <div class="mail-compose-button" (click)="spawnMailComposePopup()">
     <app-mail-componse-button />
   </div>
 
   <div class="mail-compose-popup">
-    <app-mail-componse-popup />
+    <app-mail-componse-popup *ngFor="let idx of spawnedDrafts" />
   </div>
 </div>

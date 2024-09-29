@@ -25,6 +25,8 @@ export class HomeComponent {
   user!: User;
   selectedMail!: Mail;
   mails: Mail[] = [];
+  spawnedDraftIndex = 0;
+  spawnedDrafts: number[] = [];
 
   constructor(
     private staticMailsService: StaticMailsService,
@@ -42,5 +44,14 @@ export class HomeComponent {
 
   openMailContent(mail: Mail) {
     this.selectedMail = mail;
+  }
+
+  spawnMailComposePopup() {
+    this.spawnedDrafts.push(this.spawnedDraftIndex);
+    this.spawnedDraftIndex++;
+  }
+
+  removeMailComposePopup(index: number) {
+    this.spawnedDrafts.splice(index, 1);
   }
 }
