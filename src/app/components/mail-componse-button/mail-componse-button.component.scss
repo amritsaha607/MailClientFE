@@ -1,0 +1,20 @@
+svg {
+  max-width: 2rem;
+  max-height: 2rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  background-color: var(--default-theme-color-bg);
+
+  box-shadow: 0.5rem 0.5rem 1rem var(--default-theme-color-dark);
+  cursor: pointer;
+
+  transition: box-shadow 0.1s ease-in-out;
+}
+
+svg:hover {
+  box-shadow: 0.6rem 0.6rem 1rem var(--default-theme-color-dark);
+}
+
+path {
+  fill: var(--default-theme-color-dark) !important;
+}
