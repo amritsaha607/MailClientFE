@@ -33,6 +33,19 @@
   }
 }
 
+.mail-compose-button {
+  position: absolute;
+  bottom: 3rem;
+  right: 6rem;
+}
+.mail-compose-popup {
+  position: absolute;
+  bottom: 3rem;
+  right: 12rem;
+  z-index: 1;
+  display: flex;
+}
+
 ::-webkit-scrollbar {
   width: 5px;
 }

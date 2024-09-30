@@ -18,4 +18,16 @@
       <div class="blank-mail-content-text">Click on a mail to view message</div>
     </div>
   </ng-template>
+
+  <div class="mail-compose-button" (click)="spawnMailComposePopup()">
+    <app-mail-componse-button />
+  </div>
+
+  <div class="mail-compose-popup">
+    <app-mail-componse-popup
+      [popupId]="popupId"
+      (close)="removeMailComposePopup($event)"
+      *ngFor="let popupId of spawnedDrafts"
+    />
+  </div>
 </div>

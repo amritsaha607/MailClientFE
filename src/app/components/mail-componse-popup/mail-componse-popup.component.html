@@ -1,0 +1,24 @@
+<div class="mail-popup-container font-ss">
+  <div class="heading border-bottom pad-05">
+    New Mail
+    <span class="popup-close-button" (click)="closePopup()">x</span>
+  </div>
+  <div class="container">
+    <div class="subject border-bottom pad-05">
+      <input type="text" placeholder="Subject" class="font-m" />
+    </div>
+    <div class="recipients border-bottom pad-05">
+      <input type="text" placeholder="Recipients" class="font-m" />
+    </div>
+    <div class="content pad-05">
+      <textarea
+        type="text"
+        placeholder="Compose your email"
+        class="font-m font-ss"
+      ></textarea>
+    </div>
+  </div>
+  <div class="footer pad-05">
+    <button class="send-button pad-05 font-l" (click)="send()">Send</button>
+  </div>
+</div>
