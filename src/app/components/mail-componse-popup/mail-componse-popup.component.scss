@@ -41,4 +41,26 @@
       outline: none;
     }
   }
+
+  .footer {
+    background-color: var(--default-theme-color-bg);
+    border-radius: 0 0 0.5rem 0.5rem;
+    text-align: right;
+
+    .send-button {
+      border: none;
+      cursor: pointer;
+      border-radius: 2rem;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      background-color: var(--default-theme-color-dark);
+      color: var(--default-theme-color-font-light);
+
+      .send-icon {
+        max-width: 1rem;
+        max-height: 1rem;
+        fill: white;
+      }
+    }
+  }
 }
