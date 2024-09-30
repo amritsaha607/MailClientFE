@@ -24,6 +24,10 @@
   </div>
 
   <div class="mail-compose-popup">
-    <app-mail-componse-popup *ngFor="let idx of spawnedDrafts" />
+    <app-mail-componse-popup
+      [popupId]="popupId"
+      (close)="removeMailComposePopup($event)"
+      *ngFor="let popupId of spawnedDrafts"
+    />
   </div>
 </div>

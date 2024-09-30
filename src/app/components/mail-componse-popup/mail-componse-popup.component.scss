@@ -21,6 +21,13 @@
     border-radius: 0.5rem 0.5rem 0 0;
     background-color: var(--default-theme-color-dark);
     color: var(--default-theme-color-font-light);
+
+    .popup-close-button {
+      font-weight: normal;
+      border-radius: 50%;
+      float: right;
+      cursor: pointer;
+    }
   }
 
   .content {

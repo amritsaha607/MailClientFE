@@ -52,6 +52,7 @@ export class HomeComponent {
   }
 
   removeMailComposePopup(index: number) {
-    this.spawnedDrafts.splice(index, 1);
+    const indexInDraftArray = this.spawnedDrafts.indexOf(index);
+    this.spawnedDrafts.splice(indexInDraftArray, 1);
   }
 }
