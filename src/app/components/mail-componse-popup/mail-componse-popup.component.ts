@@ -11,6 +11,10 @@ export class MailComponsePopupComponent {
   @Input() popupId: number = 0;
   @Output() close = new EventEmitter<number>();
 
+  send() {
+    this.closePopup();
+  }
+
   closePopup() {
     this.close.emit(this.popupId);
   }
