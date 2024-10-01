@@ -31,6 +31,7 @@ export class AuthService {
       },
       {
         observe: 'response',
+        withCredentials: true,
       }
     );
   }
