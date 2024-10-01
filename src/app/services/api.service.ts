@@ -30,6 +30,9 @@ export class ApiService {
   }
 
   post<T>(url: string, body: any, options: Options) {
+    // Send cookie for post request
+    options.withCredentials = true;
+
     return this.httpClient
       .post(url, body, options)
       .pipe(catchError((err) => this.handleError(err))) as Observable<T>;
