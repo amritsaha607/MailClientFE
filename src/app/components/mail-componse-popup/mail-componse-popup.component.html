@@ -5,16 +5,27 @@
   </div>
   <div class="container">
     <div class="subject border-bottom pad-05">
-      <input type="text" placeholder="Subject" class="font-m" />
+      <input
+        type="text"
+        placeholder="Subject"
+        class="font-m form-control"
+        [(ngModel)]="payload.subject"
+      />
     </div>
     <div class="recipients border-bottom pad-05">
-      <input type="text" placeholder="Recipients" class="font-m" />
+      <input
+        type="text"
+        placeholder="Recipients"
+        class="font-m"
+        [(ngModel)]="receiversList"
+      />
     </div>
     <div class="content pad-05">
       <textarea
         type="text"
         placeholder="Compose your email"
         class="font-m font-ss"
+        [(ngModel)]="payload.content"
       ></textarea>
     </div>
   </div>

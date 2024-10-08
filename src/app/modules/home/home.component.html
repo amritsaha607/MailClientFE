@@ -27,6 +27,7 @@
     <app-mail-componse-popup
       [popupId]="popupId"
       (close)="removeMailComposePopup($event)"
+      (sendMailEmitter)="composeNewEmail($event)"
       *ngFor="let popupId of spawnedDrafts"
     />
   </div>
