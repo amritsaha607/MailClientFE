@@ -30,7 +30,7 @@ export class MailComponsePopupComponent {
     this.payload.timestamp = new Date();
     this.payload.receivers = this.receiversList.split(',');
     this.sendMailEmitter.emit(this.payload);
-    this.closePopup();
+    // this.closePopup();
   }
 
   closePopup() {

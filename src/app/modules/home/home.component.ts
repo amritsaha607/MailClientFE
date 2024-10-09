@@ -5,6 +5,7 @@ import { MailComponseButtonComponent } from '../../components/mail-componse-butt
 import { MailComponsePopupComponent } from '../../components/mail-componse-popup/mail-componse-popup.component';
 import { MailLineComponent } from '../../components/mail-line/mail-line.component';
 import { MailOpenedComponent } from '../../components/mail-opened/mail-opened.component';
+import { MailsService } from '../../services/mails.service';
 import { SessionService } from '../../services/session.service';
 import { StaticMailsService } from '../../services/static-mails.service';
 
@@ -30,7 +31,8 @@ export class HomeComponent {
 
   constructor(
     private staticMailsService: StaticMailsService,
-    private sessionService: SessionService
+    private sessionService: SessionService,
+    private mailsService: MailsService
   ) {}
 
   ngOnInit() {
@@ -58,5 +60,12 @@ export class HomeComponent {
 
   composeNewEmail(payload: ComposeMailPayload) {
     payload.sender = this.user.email;
+    return this.mailsService.composeEmail(payload).subscribe((response) => {
+      if (response.status == 200) {
+        console.log('To close popup');
+      } else {
+        console.log('Failed to send email');
+      }
+    });
   }
 }
