@@ -4,13 +4,13 @@ import { v4 as uuidv4 } from 'uuid';
 import { ComposeMailPayload } from '../../../types';
 
 @Component({
-  selector: 'app-mail-componse-popup',
+  selector: 'app-mail-compose-popup',
   standalone: true,
   imports: [FormsModule],
-  templateUrl: './mail-componse-popup.component.html',
-  styleUrl: './mail-componse-popup.component.scss',
+  templateUrl: './mail-compose-popup.component.html',
+  styleUrl: './mail-compose-popup.component.scss',
 })
-export class MailComponsePopupComponent {
+export class MailComposePopupComponent {
   receiversList: string = '';
   payload: ComposeMailPayload = {
     id: '',
