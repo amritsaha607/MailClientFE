@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ComposeMailPayload, Mail, User } from '../../../types';
-import { MailComponseButtonComponent } from '../../components/mail-componse-button/mail-componse-button.component';
+import { MailComposeButtonComponent } from '../../components/mail-compose-button/mail-compose-button.component';
 import { MailComponsePopupComponent } from '../../components/mail-componse-popup/mail-componse-popup.component';
 import { MailLineComponent } from '../../components/mail-line/mail-line.component';
 import { MailOpenedComponent } from '../../components/mail-opened/mail-opened.component';
@@ -16,7 +16,7 @@ import { StaticMailsService } from '../../services/static-mails.service';
     MailLineComponent,
     CommonModule,
     MailOpenedComponent,
-    MailComponseButtonComponent,
+    MailComposeButtonComponent,
     MailComponsePopupComponent,
   ],
   templateUrl: './home.component.html',
