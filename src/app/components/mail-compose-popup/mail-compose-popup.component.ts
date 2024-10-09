@@ -22,14 +22,14 @@ export class MailComposePopupComponent {
   };
 
   @Input() popupId: number = 0;
-  @Output() sendMailEmitter = new EventEmitter<ComposeMailPayload>();
+  @Output() sendMailEmitter = new EventEmitter<[number, ComposeMailPayload]>();
   @Output() close = new EventEmitter<number>();
 
   send() {
     this.payload.id = uuidv4();
     this.payload.timestamp = new Date();
     this.payload.receivers = this.receiversList.split(',');
-    this.sendMailEmitter.emit(this.payload);
+    this.sendMailEmitter.emit([this.popupId, this.payload]);
     // this.closePopup();
   }
 

@@ -58,13 +58,15 @@ export class HomeComponent {
     this.spawnedDrafts.splice(indexInDraftArray, 1);
   }
 
-  composeNewEmail(payload: ComposeMailPayload) {
+  composeNewEmail(incomingTuple: [number, ComposeMailPayload]) {
+    const payload = incomingTuple[1];
+    const spawnedDraftIndex = incomingTuple[0];
     payload.sender = this.user.email;
     return this.mailsService.composeEmail(payload).subscribe((response) => {
       if (response.status == 200) {
-        console.log('To close popup');
+        this.removeMailComposePopup(spawnedDraftIndex);
       } else {
-        console.log('Failed to send email');
+        console.error('Failed to send email');
       }
     });
   }
