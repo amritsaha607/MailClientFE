@@ -28,9 +28,10 @@ export class MailComposePopupComponent {
   send() {
     this.payload.id = uuidv4();
     this.payload.timestamp = new Date();
-    this.payload.receivers = this.receiversList.split(',');
+    this.payload.receivers = this.receiversList
+      .split(',')
+      .map((receiver) => receiver.trim());
     this.sendMailEmitter.emit([this.popupId, this.payload]);
-    // this.closePopup();
   }
 
   closePopup() {
