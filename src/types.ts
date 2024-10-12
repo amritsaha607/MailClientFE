@@ -48,3 +48,13 @@ export interface Options {
       }
     | boolean;
 }
+
+// Compose email API payload
+export interface ComposeMailPayload {
+  id: string;
+  sender: string;
+  receivers: string[];
+  subject: string;
+  content?: string;
+  timestamp: Date;
+}

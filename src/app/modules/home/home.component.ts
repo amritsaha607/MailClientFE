@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { Mail, User } from '../../../types';
-import { MailComponseButtonComponent } from '../../components/mail-componse-button/mail-componse-button.component';
-import { MailComponsePopupComponent } from '../../components/mail-componse-popup/mail-componse-popup.component';
+import { ComposeMailPayload, Mail, User } from '../../../types';
+import { MailComposeButtonComponent } from '../../components/mail-compose-button/mail-compose-button.component';
+import { MailComposePopupComponent } from '../../components/mail-compose-popup/mail-compose-popup.component';
 import { MailLineComponent } from '../../components/mail-line/mail-line.component';
 import { MailOpenedComponent } from '../../components/mail-opened/mail-opened.component';
+import { MailsService } from '../../services/mails.service';
 import { SessionService } from '../../services/session.service';
 import { StaticMailsService } from '../../services/static-mails.service';
 
@@ -15,8 +16,8 @@ import { StaticMailsService } from '../../services/static-mails.service';
     MailLineComponent,
     CommonModule,
     MailOpenedComponent,
-    MailComponseButtonComponent,
-    MailComponsePopupComponent,
+    MailComposeButtonComponent,
+    MailComposePopupComponent,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
@@ -30,7 +31,8 @@ export class HomeComponent {
 
   constructor(
     private staticMailsService: StaticMailsService,
-    private sessionService: SessionService
+    private sessionService: SessionService,
+    private mailsService: MailsService
   ) {}
 
   ngOnInit() {
@@ -54,5 +56,18 @@ export class HomeComponent {
   removeMailComposePopup(index: number) {
     const indexInDraftArray = this.spawnedDrafts.indexOf(index);
     this.spawnedDrafts.splice(indexInDraftArray, 1);
+  }
+
+  composeNewEmail(incomingTuple: [number, ComposeMailPayload]) {
+    const payload = incomingTuple[1];
+    const spawnedDraftIndex = incomingTuple[0];
+    payload.sender = this.user.email;
+    return this.mailsService.composeEmail(payload).subscribe((response) => {
+      if (response.status == 200) {
+        this.removeMailComposePopup(spawnedDraftIndex);
+      } else {
+        console.error('Failed to send email');
+      }
+    });
   }
 }

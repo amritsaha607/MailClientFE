@@ -20,13 +20,14 @@
   </ng-template>
 
   <div class="mail-compose-button" (click)="spawnMailComposePopup()">
-    <app-mail-componse-button />
+    <app-mail-compose-button />
   </div>
 
   <div class="mail-compose-popup">
-    <app-mail-componse-popup
+    <app-mail-compose-popup
       [popupId]="popupId"
       (close)="removeMailComposePopup($event)"
+      (sendMailEmitter)="composeNewEmail($event)"
       *ngFor="let popupId of spawnedDrafts"
     />
   </div>
