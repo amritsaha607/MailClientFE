@@ -16,7 +16,7 @@ export class MailLineComponent {
       name: 'Sample',
       email: 'email',
     },
-    time: new Date(),
+    timestamp: new Date(),
   };
   @Output() open: EventEmitter<Mail> = new EventEmitter<Mail>();
 

@@ -4,7 +4,7 @@ export interface Mail {
   subject: string;
   sender: User;
   content?: string;
-  time: Date;
+  timestamp: Date;
 }
 
 export interface FormItem {
@@ -47,6 +47,13 @@ export interface Options {
         includeHeaders?: string[];
       }
     | boolean;
+}
+
+// Fetch emails API payload
+export interface FetchEmailPayload {
+  ids?: string[];
+  receivers?: string[];
+  senders?: string[];
 }
 
 // Compose email API payload
