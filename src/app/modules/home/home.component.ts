@@ -1,13 +1,17 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { ComposeMailPayload, Mail, User } from '../../../types';
+import {
+  ComposeMailPayload,
+  FetchEmailPayload,
+  Mail,
+  User,
+} from '../../../types';
 import { MailComposeButtonComponent } from '../../components/mail-compose-button/mail-compose-button.component';
 import { MailComposePopupComponent } from '../../components/mail-compose-popup/mail-compose-popup.component';
 import { MailLineComponent } from '../../components/mail-line/mail-line.component';
 import { MailOpenedComponent } from '../../components/mail-opened/mail-opened.component';
 import { MailsService } from '../../services/mails.service';
 import { SessionService } from '../../services/session.service';
-import { StaticMailsService } from '../../services/static-mails.service';
 
 @Component({
   selector: 'app-home',
@@ -30,18 +34,17 @@ export class HomeComponent {
   spawnedDrafts: number[] = [];
 
   constructor(
-    private staticMailsService: StaticMailsService,
     private sessionService: SessionService,
     private mailsService: MailsService
   ) {}
 
   ngOnInit() {
-    this.mails = this.staticMailsService.getStaticMails();
     if (this.sessionService.checkUserInSession() == false) {
       window.location.href = 'login';
     } else {
       this.user = JSON.parse(this.sessionService.getSessionUser() ?? '');
     }
+    this.fetchEmails();
   }
 
   openMailContent(mail: Mail) {
@@ -56,6 +59,22 @@ export class HomeComponent {
   removeMailComposePopup(index: number) {
     const indexInDraftArray = this.spawnedDrafts.indexOf(index);
     this.spawnedDrafts.splice(indexInDraftArray, 1);
+  }
+
+  fetchEmails() {
+    const payload: FetchEmailPayload = {
+      receivers: [this.user.email],
+    };
+    return this.mailsService.fetchEmail(payload).subscribe((response) => {
+      if (response.status == 200) {
+        this.mails = response.body;
+        this.mails.forEach((mail) => {
+          mail.timestamp = new Date(mail.timestamp);
+        });
+      } else {
+        console.error('Failed to fetch email');
+      }
+    });
   }
 
   composeNewEmail(incomingTuple: [number, ComposeMailPayload]) {
