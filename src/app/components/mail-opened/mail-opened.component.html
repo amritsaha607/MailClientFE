@@ -5,6 +5,4 @@
     <span class="sender-email">{{ mail.sender.email }}</span>
   </div>
 </div>
-<div class="body-content">
-  {{ mail.content }}
-</div>
+<div class="body-content" [innerHTML]="mail.content | renderMailContent"></div>
