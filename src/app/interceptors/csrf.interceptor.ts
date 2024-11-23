@@ -17,14 +17,14 @@ export class CSRFInterceptor implements HttpInterceptor {
       return next.handle(req);
     }
 
-    const cookieheaderName = 'X-CSRFToken';
-    const csrfToken = document.cookie.split('=')[1];
+    // const cookieheaderName = 'X-CSRFToken';
+    // const csrfToken = document.cookie.split('=')[1];
 
-    if (csrfToken !== null && !req.headers.has(cookieheaderName)) {
-      req = req.clone({
-        headers: req.headers.set(cookieheaderName, csrfToken),
-      });
-    }
+    // if (csrfToken !== null && !req.headers.has(cookieheaderName)) {
+    //   req = req.clone({
+    //     headers: req.headers.set(cookieheaderName, csrfToken),
+    //   });
+    // }
 
     return next.handle(req);
   }
