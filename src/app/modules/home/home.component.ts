@@ -1,11 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import {
-  ComposeMailPayload,
-  FetchEmailPayload,
-  Mail,
-  User,
-} from '../../../types';
+import { ComposeMailPayload, Mail, User } from '../../../types';
 import { MailComposeButtonComponent } from '../../components/mail-compose-button/mail-compose-button.component';
 import { MailComposePopupComponent } from '../../components/mail-compose-popup/mail-compose-popup.component';
 import { MailLineComponent } from '../../components/mail-line/mail-line.component';
@@ -46,7 +41,11 @@ export class HomeComponent {
       return;
     }
     this.user = JSON.parse(this.sessionService.getSessionUser() ?? '');
-    this.fetchEmails();
+    this.mailsService.initializeMails(this.user);
+    this.mailsService.mailsSubject.subscribe((mails) => {
+      this.mails = mails;
+    });
+
     this.socketService.initializeSocket(this.user.email);
   }
 
@@ -62,22 +61,6 @@ export class HomeComponent {
   removeMailComposePopup(index: number) {
     const indexInDraftArray = this.spawnedDrafts.indexOf(index);
     this.spawnedDrafts.splice(indexInDraftArray, 1);
-  }
-
-  fetchEmails() {
-    const payload: FetchEmailPayload = {
-      receivers: [this.user.email],
-    };
-    return this.mailsService.fetchEmail(payload).subscribe((response) => {
-      if (response.status == 200) {
-        this.mails = response.body;
-        this.mails.forEach((mail) => {
-          mail.timestamp = new Date(mail.timestamp);
-        });
-      } else {
-        console.error('Failed to fetch email');
-      }
-    });
   }
 
   composeNewEmail(incomingTuple: [number, ComposeMailPayload]) {
