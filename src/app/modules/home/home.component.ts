@@ -12,6 +12,7 @@ import { MailLineComponent } from '../../components/mail-line/mail-line.componen
 import { MailOpenedComponent } from '../../components/mail-opened/mail-opened.component';
 import { MailsService } from '../../services/mails.service';
 import { SessionService } from '../../services/session.service';
+import { SocketService } from '../../services/socket.service';
 
 @Component({
   selector: 'app-home',
@@ -35,16 +36,18 @@ export class HomeComponent {
 
   constructor(
     private sessionService: SessionService,
-    private mailsService: MailsService
+    private mailsService: MailsService,
+    private socketService: SocketService
   ) {}
 
   ngOnInit() {
     if (this.sessionService.checkUserInSession() == false) {
       window.location.href = 'login';
-    } else {
-      this.user = JSON.parse(this.sessionService.getSessionUser() ?? '');
+      return;
     }
+    this.user = JSON.parse(this.sessionService.getSessionUser() ?? '');
     this.fetchEmails();
+    this.socketService.initializeSocket(this.user.email);
   }
 
   openMailContent(mail: Mail) {
