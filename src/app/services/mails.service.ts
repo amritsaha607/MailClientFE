@@ -19,6 +19,7 @@ export class MailsService {
   initializeMails(user: User) {
     const payload: FetchEmailPayload = {
       receivers: [user.email],
+      latest_first: true,
     };
     var mails: Mail[] = [];
     this.fetchEmail(payload).subscribe((response) => {

@@ -54,6 +54,7 @@ export interface FetchEmailPayload {
   ids?: string[];
   receivers?: string[];
   senders?: string[];
+  latest_first?: boolean;
 }
 
 // Compose email API payload
