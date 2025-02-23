@@ -18,7 +18,9 @@
         placeholder="Recipients"
         class="font-m"
         [(ngModel)]="receiversList"
+        (input)="suggestRecipients()"
       />
+      <div class="recipients-suggestions d-none"></div>
     </div>
     <div class="content pad-05">
       <textarea

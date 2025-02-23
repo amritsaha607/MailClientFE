@@ -66,3 +66,8 @@ export interface ComposeMailPayload {
   content?: string;
   timestamp: Date;
 }
+
+// Search emails API response payload
+export interface EmailListPayload {
+  emails: string[];
+}
