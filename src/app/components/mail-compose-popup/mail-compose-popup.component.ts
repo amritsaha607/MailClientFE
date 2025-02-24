@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { v4 as uuidv4 } from 'uuid';
@@ -7,7 +8,7 @@ import { UsersService } from '../../services/users.service';
 @Component({
   selector: 'app-mail-compose-popup',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './mail-compose-popup.component.html',
   styleUrl: './mail-compose-popup.component.scss',
 })
@@ -33,6 +34,7 @@ export class MailComposePopupComponent {
     this.payload.id = uuidv4();
     this.payload.timestamp = new Date();
     this.payload.receivers = this.receiversList
+      .replace(/,\s*$/, '')
       .split(',')
       .map((receiver) => receiver.trim());
     this.sendMailEmitter.emit([this.popupId, this.payload]);
@@ -43,8 +45,13 @@ export class MailComposePopupComponent {
   }
 
   suggestRecipients() {
-    const lastTypedReciever = this.receiversList.split(',').at(-1);
-    if (lastTypedReciever == undefined || lastTypedReciever?.length <= 3) {
+    var lastTypedReciever = this.receiversList.split(',').at(-1)?.trim();
+    if (lastTypedReciever == undefined) {
+      return;
+    }
+
+    lastTypedReciever = lastTypedReciever.trim();
+    if (lastTypedReciever.length < 3) {
       return;
     }
 
@@ -56,11 +63,23 @@ export class MailComposePopupComponent {
 
           const suggestedEmails = response.body?.emails;
           if (suggestedEmails == undefined || suggestedEmails.length == 0) {
+            this.mailSuggestions = [];
             return;
           }
 
           this.mailSuggestions = suggestedEmails;
         }
       });
+  }
+
+  acceptMailSuggestion(mailSuggestion: string) {
+    const receivers = this.receiversList.split(',');
+    receivers.pop();
+    receivers.push(mailSuggestion);
+    this.receiversList = receivers.join(', ') + ', ';
+    this.mailSuggestions = [];
+
+    // point cursor to the end of the input
+    document.getElementById('id-input-recipients')?.focus();
   }
 }

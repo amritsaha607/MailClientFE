@@ -63,4 +63,26 @@
       }
     }
   }
+
+  .recipients-suggestions {
+    background-color: var(--default-theme-color-bg);
+    padding: 0.25rem;
+    border-radius: 0.5rem;
+
+    .mail-suggestion-line {
+      padding: 0.1rem;
+      cursor: pointer;
+
+      .mail-suggestion-span {
+        font-size: small;
+        font-style: italic;
+      }
+
+      hr {
+        margin: auto;
+        color: var(--default-theme-color-bg);
+        background-color: var(--default-theme-color-bg);
+      }
+    }
+  }
 }

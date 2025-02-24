@@ -16,11 +16,23 @@
       <input
         type="text"
         placeholder="Recipients"
+        id="id-input-recipients"
         class="font-m"
         [(ngModel)]="receiversList"
         (input)="suggestRecipients()"
       />
-      <div class="recipients-suggestions d-none"></div>
+      <div class="recipients-suggestions">
+        <div
+          *ngFor="let mailSuggestion of mailSuggestions; let index = index"
+          class="mail-suggestion-line"
+          (click)="acceptMailSuggestion(mailSuggestion)"
+        >
+          <span class="mail-suggestion-span">
+            {{ mailSuggestion }}
+          </span>
+          <hr *ngIf="index != mailSuggestions.length - 1" />
+        </div>
+      </div>
     </div>
     <div class="content pad-05">
       <textarea
