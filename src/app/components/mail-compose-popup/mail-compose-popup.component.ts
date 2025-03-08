@@ -47,11 +47,13 @@ export class MailComposePopupComponent {
   suggestRecipients() {
     var lastTypedReciever = this.receiversList.split(',').at(-1)?.trim();
     if (lastTypedReciever == undefined) {
+      this.clearSuggestions();
       return;
     }
 
     lastTypedReciever = lastTypedReciever.trim();
     if (lastTypedReciever.length < 3) {
+      this.clearSuggestions();
       return;
     }
 
@@ -59,8 +61,6 @@ export class MailComposePopupComponent {
       .fetchEmailListByQuery(lastTypedReciever)
       .subscribe((response) => {
         if (response.status == 200) {
-          console.log(response.body);
-
           const suggestedEmails = response.body?.emails;
           if (suggestedEmails == undefined || suggestedEmails.length == 0) {
             this.mailSuggestions = [];
@@ -70,6 +70,10 @@ export class MailComposePopupComponent {
           this.mailSuggestions = suggestedEmails;
         }
       });
+  }
+
+  clearSuggestions() {
+    this.mailSuggestions = [];
   }
 
   acceptMailSuggestion(mailSuggestion: string) {
